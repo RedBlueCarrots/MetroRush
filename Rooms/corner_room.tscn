@@ -14,39 +14,39 @@ size = Vector3(3.6, 10, 3.6)
 [node name="CornerRoom" type="StaticBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(2.62268e-07, 0, 2, 0, 2, 0, -2, 0, 2.62268e-07, 0, 0, 0)
 mesh = ExtResource("1_ldkth")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6, 8.5, 6.6)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 6.6, 8.5, 6.6)
 light_color = Color(1, 0.785196, 0.626597, 1)
 light_energy = 5.0
 shadow_enabled = true
 omni_range = 40.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6, 8.5, -6.6)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -6.6, 8.5, -6.6)
 light_color = Color(1, 0.785196, 0.626597, 1)
 light_energy = 5.0
 shadow_enabled = true
 omni_range = 40.0
 
 [node name="Floor" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0.0999999, 0)
 shape = SubResource("BoxShape3D_ldkth")
 
 [node name="Roof" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.9, 0)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 9.9, 0)
 shape = SubResource("BoxShape3D_ldkth")
 
 [node name="Wall1" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2, 5, 0)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 1.73097e-06, 5, -13.2)
 shape = SubResource("BoxShape3D_s8c2a")
 
 [node name="Wall2" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 5, -13.2)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -13.2, 5, -1.73097e-06)
 shape = SubResource("BoxShape3D_s8c2a")
 
 [node name="Post" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.2, 5, 13.2)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13.2, 5, 13.2)
 shape = SubResource("BoxShape3D_cbqbu")
