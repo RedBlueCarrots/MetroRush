@@ -17,7 +17,7 @@ func print_map(map):
 				out += str(d[1])
 		print(out)
 
-func create_path(a: Vector2i, b: Vector2i, map: Array[Array]):
+func create_path(a: Vector2i, b: Vector2i, map: Array[Array]) -> Array[Vector2i]:
 	var cur = a
 	var path : Array[Vector2i] = [a]
 	var dir := Vector2i(1, 1)
@@ -51,6 +51,10 @@ func create_path(a: Vector2i, b: Vector2i, map: Array[Array]):
 	for p in path:
 		map[p.x][p.y][0] = 4
 		map[p.x][p.y][1] = 4
+	return path
+
+func create_path_to_goal(path: Array[Vector2i], goal: Vector2i):
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func generate_station():
@@ -91,8 +95,9 @@ func generate_station():
 			exit_positions.append(new_pos)
 			detail_grid[new_pos.x][new_pos.y][0] = 2
 			detail_grid[new_pos.x][new_pos.y][1] = 3
-	create_path(plaform_positions[0]+Vector2i(1, -1), plaform_positions[1]+Vector2i(1, -1), detail_grid)
-	create_path(plaform_positions[1]+Vector2i(1, -1), plaform_positions[2]+Vector2i(1, -1), detail_grid)
-	create_path(plaform_positions[0]+Vector2i(1, -1), plaform_positions[2]+Vector2i(1, -1), detail_grid)
+	var path1 := create_path(plaform_positions[0]+Vector2i(1, -1), plaform_positions[1]+Vector2i(1, -1), detail_grid)
+	var path2 := create_path(plaform_positions[1]+Vector2i(1, -1), plaform_positions[2]+Vector2i(1, -1), detail_grid)
+	var path3 := create_path(plaform_positions[0]+Vector2i(1, -1), plaform_positions[2]+Vector2i(1, -1), detail_grid)
+	create_path_to_goal(path1, exit_positions[0])
 	print_map(detail_grid)
 	
