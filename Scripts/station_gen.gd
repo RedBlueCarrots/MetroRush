@@ -79,6 +79,8 @@ func instance_grid(grid: Array[Array]):
 			$Rooms.add_child(new_room)
 			new_room.position = Vector3(x*30, 0, y*30)
 			new_room.rotation.y = TAU/4 * ROOM_LOOKUP[conf][1]
+			if conf == "station":
+				$Player.global_position = new_room.global_position + Vector3(0, 3, 0)
 
 func print_map(map):
 	for g in map:

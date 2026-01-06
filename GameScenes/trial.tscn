@@ -7,6 +7,6 @@
 script = ExtResource("1_gulwg")
 
 [node name="Player" parent="." instance=ExtResource("2_hj2g5")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 400, 30.49, 48.301)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Rooms" type="Node3D" parent="."]

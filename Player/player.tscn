@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://jn6h2v3w68xl"]
 
 [ext_resource type="ArrayMesh" uid="uid://b0t73el0jwhjd" path="res://Models/MC/MC_IDLE.vox" id="1_4ntmi"]
-[ext_resource type="Script" uid="uid://xabqjy4ufdbh" path="res://Player/player_temp.gd" id="1_btcbx"]
+[ext_resource type="Script" uid="uid://xabqjy4ufdbh" path="res://Player/player.gd" id="1_btcbx"]
 [ext_resource type="ArrayMesh" uid="uid://cte3x7a7oxp1h" path="res://Models/MC/MC_RUN.vox" id="2_btcbx"]
 
 [sub_resource type="Animation" id="Animation_k53q1"]
@@ -9,7 +9,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("McRun:scale")
+tracks/0/path = NodePath("Meshes/McRun:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -21,7 +21,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("McRun:position")
+tracks/1/path = NodePath("Meshes/McRun:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -33,7 +33,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("McIdle:visible")
+tracks/2/path = NodePath("Meshes/McIdle:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -45,7 +45,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("McRun:visible")
+tracks/3/path = NodePath("Meshes/McRun:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -60,7 +60,7 @@ resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("McIdle:visible")
+tracks/0/path = NodePath("Meshes/McIdle:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -72,7 +72,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("McRun:visible")
+tracks/1/path = NodePath("Meshes/McRun:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -89,7 +89,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("McRun:scale")
+tracks/0/path = NodePath("Meshes/McRun:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -101,7 +101,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("McRun:position")
+tracks/1/path = NodePath("Meshes/McRun:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -113,7 +113,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("McRun:visible")
+tracks/2/path = NodePath("Meshes/McRun:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -125,7 +125,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("McIdle:visible")
+tracks/3/path = NodePath("Meshes/McIdle:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -142,20 +142,12 @@ _data = {
 &"run": SubResource("Animation_gwnis")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4ntmi"]
-size = Vector3(1.41321, 2.90808, 0.894104)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_btcbx"]
+radius = 0.872788
+height = 2.89336
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_btcbx")
-
-[node name="McIdle" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.00173953, 0, -0.614578)
-mesh = ExtResource("1_4ntmi")
-
-[node name="McRun" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
-visible = false
-mesh = ExtResource("2_btcbx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -164,11 +156,24 @@ libraries = {
 autoplay = "run"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.00173949, 1.43602, -0.385422)
-shape = SubResource("BoxShape3D_4ntmi")
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.002, 1.49, 0)
+shape = SubResource("CapsuleShape3D_btcbx")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(1, -2.4869e-14, -4.26326e-14, 1.77636e-15, 0.965926, 0.258819, -2.13163e-14, -0.258819, 0.965926, 0.00173944, 4.2, 0.385422)
-spring_length = 8.0
+spring_length = 6.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+
+[node name="Meshes" type="Node3D" parent="."]
+
+[node name="McIdle" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.002, 0, 0)
+mesh = ExtResource("1_4ntmi")
+skeleton = NodePath("../..")
+
+[node name="McRun" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+visible = false
+mesh = ExtResource("2_btcbx")
+skeleton = NodePath("../..")
