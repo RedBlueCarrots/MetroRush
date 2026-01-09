@@ -1,15 +1,14 @@
 extends CharacterBody3D
 
 
-const ACCEL = 3.5
-const JUMP_VELOCITY = 30
+const ACCEL = 2.8
+const JUMP_VELOCITY = 20
 const GRAVITY = 140
 const FRICTION = 0.005
 const MOUSE_SENSITIVITY = 0.0035
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
 func _physics_process(delta: float) -> void:
 	velocity.y -= GRAVITY*delta
 	# Handle jump.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://2si41rxqn2ac"]
+[gd_scene load_steps=6 format=3 uid="uid://2si41rxqn2ac"]
 
 [ext_resource type="ArrayMesh" uid="uid://cns6p1jegf8jr" path="res://Models/Tunnels/straight.vox" id="1_384cn"]
 
@@ -7,6 +7,12 @@ size = Vector3(30, 0.2, 30)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mtsb5"]
 size = Vector3(3.6, 10, 30)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_384cn"]
+size = Vector2(22.8, 22.8)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mtsb5"]
+size = Vector2(3.8, 22.8)
 
 [node name="StraightRoom" type="StaticBody3D"]
 
@@ -43,3 +49,20 @@ shape = SubResource("BoxShape3D_mtsb5")
 [node name="Wall2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2, 5, 0)
 shape = SubResource("BoxShape3D_mtsb5")
+
+[node name="Navigations" type="Node3D" parent="."]
+
+[node name="Center" type="MeshInstance3D" parent="Navigations" groups=["Navigation"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.363, 0)
+visible = false
+mesh = SubResource("PlaneMesh_384cn")
+
+[node name="Side2" type="MeshInstance3D" parent="Navigations" groups=["Navigation"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.363, 13.2)
+visible = false
+mesh = SubResource("PlaneMesh_mtsb5")
+
+[node name="Side4" type="MeshInstance3D" parent="Navigations" groups=["Navigation"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.363, -13.2)
+visible = false
+mesh = SubResource("PlaneMesh_mtsb5")

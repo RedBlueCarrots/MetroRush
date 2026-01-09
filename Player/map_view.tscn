@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwmuldaheatd"]
+
+[ext_resource type="PackedScene" uid="uid://dgdchoput1gn2" path="res://Player/map_tilemap.tscn" id="2_d25ey"]
+
+[node name="MapView" type="SubViewport"]
+disable_3d = true
+size = Vector2i(256, 256)
+
+[node name="TileMap" parent="." instance=ExtResource("2_d25ey")]

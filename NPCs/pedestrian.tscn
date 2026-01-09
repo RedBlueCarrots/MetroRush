@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhxwq1iyxy4wu"]
+
+[ext_resource type="Script" uid="uid://dqami0hh6ijha" path="res://NPCs/pedestrian.gd" id="1_8kvt3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_01sdg"]
+radius = 1.0
+height = 3.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8kvt3"]
+size = Vector3(2, 3, 2)
+
+[node name="Pedestrian" type="CharacterBody3D" groups=["Pedestrian"]]
+script = ExtResource("1_8kvt3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.52375, 0)
+mesh = SubResource("CapsuleMesh_01sdg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_8kvt3")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 4.0
+path_height_offset = 2.0
+avoidance_enabled = true
+height = 3.0
+radius = 1.5
+neighbor_distance = 10.0
+
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dh2aaay6jsum8"]
+[gd_scene load_steps=6 format=3 uid="uid://dh2aaay6jsum8"]
 
 [ext_resource type="ArrayMesh" uid="uid://c0ogi1574rj6i" path="res://Models/Tunnels/station.vox" id="1_eilov"]
 [ext_resource type="PackedScene" uid="uid://65nytjwgbw1u" path="res://Rooms/train.tscn" id="2_n0vvk"]
@@ -8,6 +8,9 @@ size = Vector3(30, 0.2, 30)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s8c2a"]
 size = Vector3(3.6, 10, 30)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n0vvk"]
+size = Vector2(22.8, 52.8)
 
 [node name="StraightRoom" type="StaticBody3D"]
 
@@ -105,3 +108,9 @@ shape = SubResource("BoxShape3D_s8c2a")
 
 [node name="Train" parent="." instance=ExtResource("2_n0vvk")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -20.4963, -5, 15.0327)
+
+[node name="Navigations" type="Node3D" parent="."]
+
+[node name="Center" type="MeshInstance3D" parent="Navigations" groups=["Navigation"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.363, 11.4208)
+mesh = SubResource("PlaneMesh_n0vvk")

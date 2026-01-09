@@ -31,7 +31,9 @@ var current_grid: Array[Array]
 
 func  _ready() -> void:
 	current_grid = generate_station()
-	instance_grid(current_grid)
+	var outp := instance_grid(current_grid)
+	print(outp[0])
+	get_tree().call_group("Map", "load_map", outp)
 
 func get_grid_config(grid: Array[Array], sq: Vector2i):
 	var config := ""
@@ -65,22 +67,35 @@ func get_grid_config(grid: Array[Array], sq: Vector2i):
 			config += "0"
 	return config
 
-func instance_grid(grid: Array[Array]):
+func instance_grid(grid: Array[Array]) -> Array[Array]:
+	var configout := grid.duplicate(true)
+	var stations : Array[Vector3]= []
 	for x in range(MAP_SIZE):
 		for y in range(MAP_SIZE):
 			if grid[x][y][0] in [0, 2]:
+				configout[x][y]  = "None"
 				continue
 			var conf = get_grid_config(grid, Vector2i(x, y))
 			if grid[x][y][0] == 1:
 				conf = "station"
+			configout[x][y] = conf
 			if not conf in ROOM_LOOKUP:
 				continue
 			var new_room: StaticBody3D = ROOMS[ROOM_LOOKUP[conf][0]].instantiate()
 			$Rooms.add_child(new_room)
+			for c in new_room.get_children():
+				if c is OmniLight3D:
+					c.queue_free()
 			new_room.position = Vector3(x*30, 0, y*30)
 			new_room.rotation.y = TAU/4 * ROOM_LOOKUP[conf][1]
+			stations.append(new_room.global_position)
 			if conf == "station":
 				$Player.global_position = new_room.global_position + Vector3(0, 3, 0)
+	Global.all_room_pos = stations
+	for c in get_tree().get_nodes_in_group("Pedestrian"):
+		c.set_dest(stations.pick_random() + Vector3(randf()*40-20, 3, randf()*40-20), stations.pick_random() + Vector3(randf()*40-20, 3, randf()*40-20))
+	$NavigationRegion3D.bake_navigation_mesh(false)
+	return configout
 
 func print_map(map):
 	for g in map:

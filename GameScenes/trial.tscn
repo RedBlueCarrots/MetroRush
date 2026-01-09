@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4ouwnfe3q8bn"]
+[gd_scene load_steps=6 format=3 uid="uid://b4ouwnfe3q8bn"]
 
 [ext_resource type="Script" uid="uid://dalxofe0oud7r" path="res://Scripts/station_gen.gd" id="1_gulwg"]
 [ext_resource type="PackedScene" uid="uid://jn6h2v3w68xl" path="res://Player/player.tscn" id="2_hj2g5"]
+[ext_resource type="PackedScene" uid="uid://bhxwq1iyxy4wu" path="res://NPCs/pedestrian.tscn" id="3_hj2g5"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_scqjr"]
+geometry_source_geometry_mode = 2
+geometry_source_group_name = &"Navigation"
+agent_height = 3.0
+agent_radius = 4.0
+
+[sub_resource type="Environment" id="Environment_hj2g5"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.5
 
 [node name="trial" type="Node3D"]
 script = ExtResource("1_gulwg")
@@ -10,3 +22,251 @@ script = ExtResource("1_gulwg")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Rooms" type="Node3D" parent="."]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_scqjr")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Pedestrian" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian2" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian3" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian4" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian5" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian6" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian7" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian8" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian9" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian10" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian11" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian12" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian13" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian14" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian15" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian16" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian17" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian18" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian19" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian20" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian21" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian22" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian23" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian24" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian25" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian26" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian27" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian28" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian29" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian30" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian31" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian32" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian33" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian34" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian35" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian36" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian37" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian38" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian39" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian40" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian41" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian42" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian43" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian44" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian45" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian46" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian47" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian48" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian49" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian50" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian51" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian52" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian53" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian54" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian55" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian56" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian57" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian58" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian59" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian60" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian61" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian62" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian63" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian64" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian65" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian66" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian67" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian68" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian69" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian70" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian71" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian72" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian73" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian74" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian75" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian76" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian77" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian78" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian79" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian80" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian81" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian82" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian83" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian84" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian85" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian86" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian87" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian88" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian89" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian90" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian91" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian92" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian93" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian94" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian95" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian96" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian97" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian98" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian99" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian100" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian101" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian102" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian103" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian104" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian105" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian106" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian107" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian108" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian109" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian110" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian111" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian112" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian113" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian114" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian115" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian116" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian117" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian118" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian119" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="Pedestrian120" parent="Node3D" instance=ExtResource("3_hj2g5")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hj2g5")
