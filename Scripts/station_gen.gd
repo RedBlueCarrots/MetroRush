@@ -1,3 +1,4 @@
+class_name StationGen
 extends Node
 
 const ALL_ROOM = preload("res://Rooms/all_room.tscn")
@@ -7,6 +8,8 @@ const STRAIGHT_ROOM = preload("res://Rooms/straight_room.tscn")
 const T_ROOM = preload("res://Rooms/t_room.tscn")
 
 const ROOMS = [ALL_ROOM, CORNER_ROOM, STATION, STRAIGHT_ROOM, T_ROOM]
+
+var stations_lookup: Array[StaticBody3D] = []
 
 #up, right, down, left
 const ROOM_LOOKUP = {
@@ -28,12 +31,10 @@ const DIST_MIN_EXTRA = 3
 const MAP_SIZE = 16
 
 var current_grid: Array[Array]
-
+var outp
 func  _ready() -> void:
 	current_grid = generate_station()
-	var outp := instance_grid(current_grid)
-	print(outp[0])
-	get_tree().call_group("Map", "load_map", outp)
+	outp = instance_grid(current_grid)
 
 func get_grid_config(grid: Array[Array], sq: Vector2i):
 	var config := ""
@@ -70,6 +71,7 @@ func get_grid_config(grid: Array[Array], sq: Vector2i):
 func instance_grid(grid: Array[Array]) -> Array[Array]:
 	var configout := grid.duplicate(true)
 	var stations : Array[Vector3]= []
+	stations_lookup = []
 	for x in range(MAP_SIZE):
 		for y in range(MAP_SIZE):
 			if grid[x][y][0] in [0, 2]:
@@ -90,7 +92,10 @@ func instance_grid(grid: Array[Array]) -> Array[Array]:
 			new_room.rotation.y = TAU/4 * ROOM_LOOKUP[conf][1]
 			stations.append(new_room.global_position)
 			if conf == "station":
-				$Player.global_position = new_room.global_position + Vector3(0, 3, 0)
+				$Player.global_position = new_room.global_position + Vector3(-18, 3, 0)
+				conf += str(stations_lookup.size())
+				configout[x][y] = conf
+				stations_lookup.append(new_room)
 	Global.all_room_pos = stations
 	for c in get_tree().get_nodes_in_group("Pedestrian"):
 		c.set_dest(stations.pick_random() + Vector3(randf()*40-20, 3, randf()*40-20), stations.pick_random() + Vector3(randf()*40-20, 3, randf()*40-20))

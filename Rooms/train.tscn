@@ -1,16 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://65nytjwgbw1u"]
+[gd_scene load_steps=10 format=3 uid="uid://65nytjwgbw1u"]
 
 [ext_resource type="ArrayMesh" uid="uid://clxrn0du1ux6o" path="res://Models/Tunnels/train.vox" id="1_lxuyu"]
+[ext_resource type="Script" uid="uid://4lywe8i2jhbn" path="res://Rooms/train.gd" id="1_qkp0y"]
 [ext_resource type="ArrayMesh" uid="uid://b4av8mgv3gyl" path="res://Models/Tunnels/trainglass.vox" id="2_jfdcr"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qkp0y"]
-transparency = 1
-albedo_color = Color(0.760784, 1, 1, 0.486275)
+[ext_resource type="PackedScene" uid="uid://cr2148hpxjhyy" path="res://Rooms/train_door.tscn" id="4_xc3vp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jfdcr"]
 size = Vector3(10.0181, 1, 58.6622)
 
-[node name="Train" type="StaticBody3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_qkp0y"]
+size = Vector3(13.911, 1, 9.59259)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xc3vp"]
+size = Vector3(13.911, 1, 9.017)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8nsoe"]
+size = Vector3(13.911, 1, 5.747)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c17vd"]
+size = Vector3(13.911, 1, 9.622)
+
+[node name="Train" type="StaticBody3D" groups=["Train"]]
+script = ExtResource("1_qkp0y")
 
 [node name="Front" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 15)
@@ -23,12 +34,10 @@ mesh = ExtResource("1_lxuyu")
 [node name="FrontGlass" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 15)
 mesh = ExtResource("2_jfdcr")
-surface_material_override/0 = SubResource("StandardMaterial3D_qkp0y")
 
 [node name="BackGlass" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, -2, 0, 0, -15)
 mesh = ExtResource("2_jfdcr")
-surface_material_override/0 = SubResource("StandardMaterial3D_qkp0y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000152588, 4.71809, -0.332855)
@@ -37,3 +46,45 @@ shape = SubResource("BoxShape3D_jfdcr")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.22811, 8.03114, -0.332855)
 shape = SubResource("BoxShape3D_jfdcr")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.72894, 6.98139, 0.0257611)
+shape = SubResource("BoxShape3D_qkp0y")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.72894, 6.98139, 14.5023)
+shape = SubResource("BoxShape3D_xc3vp")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.72894, 6.98139, -14.5071)
+shape = SubResource("BoxShape3D_xc3vp")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.72894, 6.98139, -27.35)
+shape = SubResource("BoxShape3D_8nsoe")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4.72894, 6.98139, 27.2221)
+shape = SubResource("BoxShape3D_8nsoe")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 6.981, 27.208)
+shape = SubResource("BoxShape3D_c17vd")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 6.981, -27.3898)
+shape = SubResource("BoxShape3D_c17vd")
+
+[node name="Doors" type="Node3D" parent="."]
+
+[node name="TrainDoor" parent="Doors" instance=ExtResource("4_xc3vp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00571, 5.21953, -21.6266)
+
+[node name="TrainDoor2" parent="Doors" instance=ExtResource("4_xc3vp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00571, 5.21953, -7.38804)
+
+[node name="TrainDoor3" parent="Doors" instance=ExtResource("4_xc3vp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00571, 5.21953, 7.43793)
+
+[node name="TrainDoor4" parent="Doors" instance=ExtResource("4_xc3vp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00571, 5.21953, 21.6898)

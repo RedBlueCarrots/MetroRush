@@ -1,0 +1,297 @@
+[gd_scene load_steps=8 format=3 uid="uid://yp5lgifehng2"]
+
+[ext_resource type="PackedScene" uid="uid://jn6h2v3w68xl" path="res://Player/player.tscn" id="1_858tu"]
+[ext_resource type="Script" uid="uid://bjc62ld57yfki" path="res://GameScenes/game.gd" id="1_fimsf"]
+[ext_resource type="PackedScene" uid="uid://bhxwq1iyxy4wu" path="res://NPCs/pedestrian.tscn" id="2_fimsf"]
+[ext_resource type="AudioStream" uid="uid://tguto8up4r46" path="res://AUdio/jingle_success_pass1.wav" id="4_55g6r"]
+[ext_resource type="AudioStream" uid="uid://oph8dl5wppt0" path="res://AUdio/jingle_failure_pass1.wav" id="5_q6okl"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_3g60v"]
+geometry_source_geometry_mode = 2
+geometry_source_group_name = &"Navigation"
+agent_height = 3.0
+agent_radius = 4.0
+
+[sub_resource type="Environment" id="Environment_55g6r"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.5
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_fimsf")
+
+[node name="Player" parent="." instance=ExtResource("1_858tu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Rooms" type="Node3D" parent="."]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_3g60v")
+
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="Pedestrian" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian2" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian3" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian4" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian5" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian6" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian7" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian8" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian9" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian10" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian11" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian12" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian13" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian14" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian15" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian16" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian17" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian18" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian19" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian20" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian21" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian22" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian23" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian24" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian25" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian26" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian27" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian28" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian29" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian30" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian31" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian32" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian33" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian34" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian35" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian36" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian37" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian38" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian39" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian40" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian41" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian42" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian43" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian44" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian45" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian46" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian47" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian48" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian49" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian50" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian51" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian52" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian53" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian54" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian55" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian56" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian57" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian58" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian59" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian60" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian61" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian62" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian63" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian64" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian65" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian66" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian67" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian68" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian69" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian70" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian71" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian72" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian73" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian74" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian75" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian76" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian77" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian78" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian79" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian80" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian81" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian82" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian83" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian84" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian85" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian86" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian87" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian88" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian89" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian90" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian91" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian92" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian93" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian94" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian95" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian96" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian97" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian98" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian99" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian100" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian101" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian102" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian103" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian104" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian105" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian106" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian107" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian108" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian109" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian110" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian111" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian112" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian113" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian114" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian115" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian116" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian117" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian118" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian119" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="Pedestrian120" parent="NPCs" instance=ExtResource("2_fimsf")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_55g6r")
+
+[node name="MainGame" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[node name="Start" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="End" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_55g6r")
+
+[node name="Lose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_q6okl")
+
+[connection signal="timeout" from="MainGame" to="." method="_on_main_game_timeout"]
+[connection signal="timeout" from="Start" to="." method="_on_start_timeout"]
+[connection signal="timeout" from="End" to="." method="_on_end_timeout"]
