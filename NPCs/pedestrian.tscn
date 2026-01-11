@@ -22,10 +22,18 @@ shape = SubResource("BoxShape3D_8kvt3")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 4.0
+target_desired_distance = 4.0
 path_height_offset = 2.0
+path_max_distance = 7.51
 avoidance_enabled = true
 height = 3.0
-radius = 1.5
-neighbor_distance = 10.0
+radius = 2.5
+neighbor_distance = 20.0
+max_neighbors = 12
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675332, 0)
+target_position = Vector3(0, -10, 0)
+collision_mask = 4
 
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]

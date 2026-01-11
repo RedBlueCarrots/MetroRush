@@ -5,13 +5,14 @@ const ALL_ROOM = preload("res://Rooms/all_room.tscn")
 const CORNER_ROOM = preload("res://Rooms/corner_room.tscn")
 const STATION = preload("res://Rooms/station.tscn")
 const STRAIGHT_ROOM = preload("res://Rooms/straight_room.tscn")
+const STAIR_ROOM = preload("res://Rooms/straight_stairs.tscn")
 const T_ROOM = preload("res://Rooms/t_room.tscn")
 
-const ROOMS = [ALL_ROOM, CORNER_ROOM, STATION, STRAIGHT_ROOM, T_ROOM]
+const ROOMS = [ALL_ROOM, CORNER_ROOM, STATION, STRAIGHT_ROOM, T_ROOM, STAIR_ROOM]
 
 var stations_lookup: Array[StaticBody3D] = []
 
-#up, right, down, left
+#up, right, down, leftlobal.lvl + 
 const ROOM_LOOKUP = {
 	"1100": [1, 0],
 	"0110": [1, 1],
@@ -24,7 +25,8 @@ const ROOM_LOOKUP = {
 	"1011": [4, 2],
 	"1101": [4, 3],
 	"1111": [0, 0],
-	"station": [2,0]
+	"station": [2,0],
+	"stairs": [5, 0]
 }
 const DIST_MIN_PLATFORM = 7
 const DIST_MIN_EXTRA = 3
@@ -37,6 +39,7 @@ func  _ready() -> void:
 	outp = instance_grid(current_grid)
 
 func get_grid_config(grid: Array[Array], sq: Vector2i):
+	const notappr = [0, 2, 5]
 	var config := ""
 	if sq.y == MAP_SIZE-1:
 		config += "0"
@@ -48,21 +51,21 @@ func get_grid_config(grid: Array[Array], sq: Vector2i):
 	if sq.x == MAP_SIZE-1:
 		config += "0"
 	else:
-		if grid[sq.x+1][sq.y][0] != 0:
+		if grid[sq.x+1][sq.y][0] not in notappr:
 			config += "1"
 		else:
 			config += "0"
 	if sq.y == 0:
 		config += "0"
 	else:
-		if grid[sq.x][sq.y-1][0] != 0:
+		if grid[sq.x][sq.y-1][0] not in notappr:
 			config += "1"
 		else:
 			config += "0"
 	if sq.x == 0:
 		config += "0"
 	else:
-		if grid[sq.x-1][sq.y][0] != 0:
+		if grid[sq.x-1][sq.y][0] not in notappr:
 			config += "1"
 		else:
 			config += "0"
@@ -80,6 +83,8 @@ func instance_grid(grid: Array[Array]) -> Array[Array]:
 			var conf = get_grid_config(grid, Vector2i(x, y))
 			if grid[x][y][0] == 1:
 				conf = "station"
+			if grid[x][y][0] == 5:
+				conf = "stairs"
 			configout[x][y] = conf
 			if not conf in ROOM_LOOKUP:
 				continue
@@ -87,15 +92,27 @@ func instance_grid(grid: Array[Array]) -> Array[Array]:
 			$Rooms.add_child(new_room)
 			for c in new_room.get_children():
 				if c is OmniLight3D:
-					c.queue_free()
+					pass
+					#c.queue_free()
 			new_room.position = Vector3(x*30, 0, y*30)
 			new_room.rotation.y = TAU/4 * ROOM_LOOKUP[conf][1]
-			stations.append(new_room.global_position)
 			if conf == "station":
-				$Player.global_position = new_room.global_position + Vector3(-18, 3, 0)
-				conf += str(stations_lookup.size())
+				stations.append(new_room.global_position - Vector3.UP*10)
+			elif conf == "stairs":
+				stations.append(new_room.global_position - Vector3.UP*5)
+			else:
+				stations.append(new_room.global_position)
+			if conf == "station":
+				#conf += str(stations_lookup.size())
 				configout[x][y] = conf
 				stations_lookup.append(new_room)
+	stations_lookup.shuffle()
+	for x in range(MAP_SIZE):
+		for y in range(MAP_SIZE):
+			for i in range(3):
+				if configout[x][y] == "station" and stations_lookup[i].position ==  Vector3(x*30, 0, y*30):
+					configout[x][y] += str(i)
+	$Player.global_position = stations_lookup[0].global_position + Vector3(-18, -3, 0)
 	Global.all_room_pos = stations
 	for c in get_tree().get_nodes_in_group("Pedestrian"):
 		c.set_dest(stations.pick_random() + Vector3(randf()*40-20, 3, randf()*40-20), stations.pick_random() + Vector3(randf()*40-20, 3, randf()*40-20))
@@ -108,6 +125,8 @@ func print_map(map):
 		for d in g:
 			if d[0] == 0:
 				out += "."
+			elif d[0] == 5:
+				out += "5"
 			else:
 				out += str(d[1])
 		print(out)
@@ -209,7 +228,7 @@ func generate_station():
 	
 	#Place platforms
 	while plaform_positions.size() < 3:
-		var new_pos = Vector2i(randi_range(1, MAP_SIZE-2),randi_range(1, MAP_SIZE-2))
+		var new_pos = Vector2i(randi_range(1, MAP_SIZE-2),randi_range(2, MAP_SIZE-3))
 		var valid = true
 		for p in plaform_positions:
 			if abs(p.x-new_pos.x) + abs(p.y-new_pos.y) < DIST_MIN_PLATFORM:
@@ -218,8 +237,10 @@ func generate_station():
 			plaform_positions.append(new_pos)
 			for x in range(2):
 				for y in range(2):
-					detail_grid[new_pos.x+x][new_pos.y+y][0] = 1
-					detail_grid[new_pos.x+x][new_pos.y+y][1] = plaform_positions.size()-1
+					detail_grid[new_pos.x+x][new_pos.y+y+1][0] = 1
+					detail_grid[new_pos.x+x][new_pos.y+y+1][1] = plaform_positions.size()-1
+				detail_grid[new_pos.x+x][new_pos.y][0] = 5
+				detail_grid[new_pos.x+x][new_pos.y][1] = plaform_positions.size()-1
 	
 	#Place Exits
 	while exit_positions.size() < 3:
@@ -246,11 +267,15 @@ func generate_station():
 	if path4 == [] or path5 == [] or path6 == []:
 		return generate_station()
 	var count = [0, 0, 0]
+	var count2 = [0, 0, 0]
 	for x in range(MAP_SIZE):
 		for y in range(MAP_SIZE-1, -1, -1):
 			for i in range(3):
 				if detail_grid[x][y][0] == 1 and detail_grid[x][y][1] == i and count[i] < 3:
 					count[i] += 1
+					detail_grid[x][y][0] = 0
+				if detail_grid[x][y][0] == 5 and detail_grid[x][y][1] == i and count2[i] < 1:
+					count2[i] += 1
 					detail_grid[x][y][0] = 0
 	print_map(detail_grid)
 	return detail_grid

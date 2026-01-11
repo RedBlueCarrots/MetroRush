@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://2si41rxqn2ac"]
+[gd_scene load_steps=8 format=3 uid="uid://2si41rxqn2ac"]
 
+[ext_resource type="Script" uid="uid://bqwv2yt7xo0vd" path="res://Rooms/straight_room.gd" id="1_20awu"]
 [ext_resource type="ArrayMesh" uid="uid://cns6p1jegf8jr" path="res://Models/Tunnels/straight.vox" id="1_384cn"]
+[ext_resource type="PackedScene" uid="uid://b4ylvw8tea053" path="res://Extras/puddle.tscn" id="2_mtsb5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_384cn"]
 size = Vector3(30, 0.2, 30)
@@ -15,6 +17,7 @@ size = Vector2(22.8, 22.8)
 size = Vector2(3.8, 22.8)
 
 [node name="StraightRoom" type="StaticBody3D"]
+script = ExtResource("1_20awu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
@@ -66,3 +69,6 @@ mesh = SubResource("PlaneMesh_mtsb5")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.363, -13.2)
 visible = false
 mesh = SubResource("PlaneMesh_mtsb5")
+
+[node name="Puddle" parent="." instance=ExtResource("2_mtsb5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)

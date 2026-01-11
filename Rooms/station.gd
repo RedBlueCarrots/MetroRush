@@ -1,3 +1,4 @@
+class_name Station
 extends StaticBody3D
 
 

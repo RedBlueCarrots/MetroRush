@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://b76y0b2y68d1k"]
+
+[ext_resource type="Texture2D" uid="uid://bo02fovd0igbn" path="res://Assets/SubwayMap.png" id="1_53prf"]
+[ext_resource type="Script" uid="uid://bxfv6kwd3djol" path="res://GameScenes/ui.gd" id="1_f4adn"]
+[ext_resource type="FontFile" uid="uid://bhlrls4xfv8ox" path="res://Assets/Orbitron-VariableFont_wght.ttf" id="3_ulip7"]
+
+[sub_resource type="Gradient" id="Gradient_53prf"]
+offsets = PackedFloat32Array(0, 0.422078, 0.467532)
+colors = PackedColorArray(1, 0.843667, 0.33, 1, 0.766667, 0.611709, 0.102564, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f4adn"]
+gradient = SubResource("Gradient_53prf")
+fill = 1
+fill_from = Vector2(0.513761, 0.472477)
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+script = ExtResource("1_f4adn")
+load_points = Array[Vector2]([Vector2(248, 384), Vector2(518, 361), Vector2(675, 316), Vector2(954, 204)])
+
+[node name="FullMap" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Map" type="TextureRect" parent="FullMap"]
+layout_mode = 0
+offset_right = 5200.0
+offset_bottom = 2900.0
+scale = Vector2(0.225, 0.225)
+texture = ExtResource("1_53prf")
+
+[node name="Marker" type="TextureRect" parent="FullMap"]
+layout_mode = 0
+offset_left = 945.0
+offset_top = 204.0
+offset_right = 1009.0
+offset_bottom = 268.0
+scale = Vector2(0.335, 0.335)
+texture = SubResource("GradientTexture2D_f4adn")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -316.5
+offset_top = -67.0
+offset_right = 316.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_ulip7")
+theme_override_font_sizes/font_size = 48
+text = "GET TO THE BLUE LINE"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Label"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fade" type="ColorRect" parent="."]
+z_index = 425
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

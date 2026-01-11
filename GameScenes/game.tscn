@@ -1,16 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://yp5lgifehng2"]
+[gd_scene load_steps=9 format=3 uid="uid://yp5lgifehng2"]
 
 [ext_resource type="PackedScene" uid="uid://jn6h2v3w68xl" path="res://Player/player.tscn" id="1_858tu"]
 [ext_resource type="Script" uid="uid://bjc62ld57yfki" path="res://GameScenes/game.gd" id="1_fimsf"]
 [ext_resource type="PackedScene" uid="uid://bhxwq1iyxy4wu" path="res://NPCs/pedestrian.tscn" id="2_fimsf"]
 [ext_resource type="AudioStream" uid="uid://tguto8up4r46" path="res://AUdio/jingle_success_pass1.wav" id="4_55g6r"]
 [ext_resource type="AudioStream" uid="uid://oph8dl5wppt0" path="res://AUdio/jingle_failure_pass1.wav" id="5_q6okl"]
+[ext_resource type="PackedScene" uid="uid://b76y0b2y68d1k" path="res://GameScenes/ui.tscn" id="6_q6okl"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_3g60v"]
+sample_partition_type = 2
 geometry_source_geometry_mode = 2
 geometry_source_group_name = &"Navigation"
 agent_height = 3.0
 agent_radius = 4.0
+agent_max_climb = 0.5
 
 [sub_resource type="Environment" id="Environment_55g6r"]
 ambient_light_source = 2
@@ -274,11 +277,11 @@ navigation_mesh = SubResource("NavigationMesh_3g60v")
 environment = SubResource("Environment_55g6r")
 
 [node name="MainGame" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 31.0
 one_shot = true
 
 [node name="Start" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 1.4
 one_shot = true
 autostart = true
 
@@ -291,6 +294,9 @@ stream = ExtResource("4_55g6r")
 
 [node name="Lose" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_q6okl")
+
+[node name="UI" parent="." instance=ExtResource("6_q6okl")]
+visible = false
 
 [connection signal="timeout" from="MainGame" to="." method="_on_main_game_timeout"]
 [connection signal="timeout" from="Start" to="." method="_on_start_timeout"]

@@ -2,17 +2,18 @@ extends TileMapLayer
 
 #up, right, down, left
 const LOOKUP = {
-	"1100": Vector2i(0, 3),
-	"0110": Vector2i(0, 2),
-	"0011": Vector2i(1, 2),
-	"1001": Vector2i(1, 3),
+	"1100": Vector2i(0, 2),
+	"0110": Vector2i(0, 3),
+	"0011": Vector2i(1, 3),
+	"1001": Vector2i(1, 2),
 	"1010": Vector2i(2, 3),
 	"0101": Vector2i(2, 2),
 	"1110": Vector2i(3, 2),
-	"0111": Vector2i(3, 1),
+	"0111": Vector2i(3, 3),
 	"1011": Vector2i(2, 0),
-	"1101": Vector2i(3, 3),
+	"1101": Vector2i(3, 1),
 	"1111": Vector2i(2, 1),
+	"stairs": Vector2(1, 1),
 	"station": Vector2i(6, 3),
 	"station0": Vector2i(6, 3),
 	"station1": Vector2i(6, 3),
@@ -45,7 +46,7 @@ func load_map(details: Array[Array], cols: Array):
 				var tile_pos: Vector2i = LOOKUP[details[x][y]]
 				if details[x][y].begins_with("station"):
 					print(details[x][y])
-					tile_pos = LOOKUP[Materials.COLS[cols[int(details[x][y].right(1))]]]
+					tile_pos = LOOKUP[cols[int(details[x][y].right(1))]]
 					for xp in range(2):
 						for yp in range(2):
 							set_cell(Vector2i(x-xp, y+yp), 2, tile_pos)

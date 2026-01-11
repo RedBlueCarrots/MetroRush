@@ -14,14 +14,19 @@
 
 extends StaticBody3D
 
-func load_train(idx: int):
+func load_train(col: Color):
 	$Front.set_surface_override_material(0, Materials.TRAIN_MAT)
-	$Front.set_instance_shader_parameter("train_col", Materials.COLS[idx])
+	$Front.set_instance_shader_parameter("train_col", col)
 	$Back.set_surface_override_material(0, Materials.TRAIN_MAT)
-	$Back.set_instance_shader_parameter("train_col", Materials.COLS[idx])
+	$Back.set_instance_shader_parameter("train_col", col)
+	for d in $Doors.get_children():
+		var todo = [d.get_node("AnimatableBody3D/MeshInstance3D"), d.get_node("AnimatableBody3D2/MeshInstance3D")]
+		for c in todo:
+			c.set_surface_override_material(0, Materials.TRAIN_MAT)
+			c.set_instance_shader_parameter("train_col", col)
 
 func _ready() -> void:
-	open()
+	pass
 
 func open():
 	for c in $Doors.get_children():

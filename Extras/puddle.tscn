@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4ylvw8tea053"]
+
+[ext_resource type="ArrayMesh" uid="uid://dsyv1bfdi65dh" path="res://Models/Extras/puddle.vox" id="1_r665y"]
+[ext_resource type="Script" uid="uid://debycwsrmku4" path="res://Extras/puddle.gd" id="1_xtaxq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r665y"]
+size = Vector3(1.6, 0.2, 1.4)
+
+[node name="Puddle" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_xtaxq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+mesh = ExtResource("1_r665y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.1, -0.1)
+shape = SubResource("BoxShape3D_r665y")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+radius = 1.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
