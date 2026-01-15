@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://di13elyl8pc0v"]
+
+[ext_resource type="ArrayMesh" uid="uid://cvadnlmfpeqgb" path="res://Models/Tunnels/ticket-gate.vox" id="1_wncun"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0nyxb"]
+size = Vector3(3.4, 0.4, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vu1qd"]
+size = Vector3(2.84047, 3.17407, 2.46788)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wncun"]
+size = Vector3(12.1922, 6.35, 4.885)
+
+[node name="TicketGate" type="Node3D"]
+
+[node name="BoomGate1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.13018, 11.2, -12.8)
+mesh = SubResource("BoxMesh_0nyxb")
+skeleton = NodePath("")
+
+[node name="BoomGate2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 7.71149, 11.2, -12.8)
+mesh = SubResource("BoxMesh_0nyxb")
+skeleton = NodePath("")
+
+[node name="BoomGate3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.67574, 11.2, -12.8)
+mesh = SubResource("BoxMesh_0nyxb")
+skeleton = NodePath("")
+
+[node name="BoomGate4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, -3.09443, 11.2, -12.8)
+mesh = SubResource("BoxMesh_0nyxb")
+skeleton = NodePath("")
+
+[node name="Base" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000465393, 10.7995, -12.8097)
+shape = SubResource("BoxShape3D_vu1qd")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8143, 10.7995, -12.8097)
+shape = SubResource("BoxShape3D_vu1qd")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8363, 10.7995, -12.8097)
+shape = SubResource("BoxShape3D_vu1qd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("1_wncun")
+
+[node name="Gate1" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.08683, 10.8784, -12.8)
+shape = SubResource("BoxShape3D_wncun")
+disabled = true
+
+[node name="Gate2" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gate2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.16524, 10.8784, -12.8)
+shape = SubResource("BoxShape3D_wncun")

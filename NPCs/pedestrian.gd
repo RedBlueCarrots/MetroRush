@@ -6,6 +6,27 @@ var count = 0
 @onready var navigation_agent := $NavigationAgent3D
 var movement_speed = randf_range(8, 14)
 var override := false
+
+const skins = [Color.CORNSILK, Color.TAN, Color.SANDY_BROWN, Color.SADDLE_BROWN]
+const hairs = [Color.BLACK, Color.DIM_GRAY, Color.DARK_GOLDENROD, Color.BLANCHED_ALMOND]
+const hats = [Color.RED, Color.FIREBRICK, Color.DARK_GREEN, Color.NAVY_BLUE]
+const shirts = [Color.ORANGE_RED, Color.AQUAMARINE, Color.TEAL, Color.MINT_CREAM, Color.DARK_ORCHID, Color.LIGHT_BLUE]
+const pants = [Color.NAVY_BLUE, Color.DARK_SLATE_GRAY, Color.BLACK, Color.CADET_BLUE]
+const shoes = [Color.BLACK, Color.AZURE, Color.SADDLE_BROWN]
+
+func _ready() -> void:
+	randomize_cols()
+
+func randomize_cols():
+	$Meshes/McRun.set_instance_shader_parameter("shirt", shirts.pick_random())
+	$Meshes/McRun.set_instance_shader_parameter("hair", hairs.pick_random())
+	$Meshes/McRun.set_instance_shader_parameter("hat", hats.pick_random())
+	$Meshes/McRun.set_instance_shader_parameter("skin", skins.pick_random())
+	$Meshes/McRun.set_instance_shader_parameter("pants", pants.pick_random())
+	$Meshes/McRun.set_instance_shader_parameter("shoes", shoes.pick_random())
+	
+
+
 func set_dest(spot: Vector3, spawn: Vector3):
 	position = spawn
 	$NavigationAgent3D.target_position = spot
@@ -40,4 +61,5 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 		velocity.y = JUMP_VELOCITY
 	elif is_on_wall():
 		velocity.y = 0.1
+	$Meshes.rotation.y = Vector2(velocity.z, velocity.x).angle()
 	move_and_slide()

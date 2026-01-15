@@ -92,8 +92,8 @@ func instance_grid(grid: Array[Array]) -> Array[Array]:
 			$Rooms.add_child(new_room)
 			for c in new_room.get_children():
 				if c is OmniLight3D:
-					pass
-					#c.queue_free()
+					#pass
+					c.queue_free()
 			new_room.position = Vector3(x*30, 0, y*30)
 			new_room.rotation.y = TAU/4 * ROOM_LOOKUP[conf][1]
 			if conf == "station":
