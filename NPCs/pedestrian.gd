@@ -1,4 +1,7 @@
+class_name NPC
 extends CharacterBody3D
+
+const BASHED = preload("res://NPCs/bashed_npc.tscn")
 
 const JUMP_VELOCITY = 15
 const GRAVITY = 140
@@ -14,16 +17,24 @@ const shirts = [Color.ORANGE_RED, Color.AQUAMARINE, Color.TEAL, Color.MINT_CREAM
 const pants = [Color.NAVY_BLUE, Color.DARK_SLATE_GRAY, Color.BLACK, Color.CADET_BLUE]
 const shoes = [Color.BLACK, Color.AZURE, Color.SADDLE_BROWN]
 
+var c_shirt = shirts.pick_random()
+var c_hair = hairs.pick_random()
+var c_hat = hats.pick_random()
+var c_skin = skins.pick_random()
+var c_pants = pants.pick_random()
+var c_shoes = shoes.pick_random()
+
+
 func _ready() -> void:
 	randomize_cols()
 
 func randomize_cols():
-	$Meshes/McRun.set_instance_shader_parameter("shirt", shirts.pick_random())
-	$Meshes/McRun.set_instance_shader_parameter("hair", hairs.pick_random())
-	$Meshes/McRun.set_instance_shader_parameter("hat", hats.pick_random())
-	$Meshes/McRun.set_instance_shader_parameter("skin", skins.pick_random())
-	$Meshes/McRun.set_instance_shader_parameter("pants", pants.pick_random())
-	$Meshes/McRun.set_instance_shader_parameter("shoes", shoes.pick_random())
+	$Meshes/McRun.set_instance_shader_parameter("shirt", c_shirt)
+	$Meshes/McRun.set_instance_shader_parameter("hair", c_hair)
+	$Meshes/McRun.set_instance_shader_parameter("hat", c_hat)
+	$Meshes/McRun.set_instance_shader_parameter("skin", c_skin)
+	$Meshes/McRun.set_instance_shader_parameter("pants", c_pants)
+	$Meshes/McRun.set_instance_shader_parameter("shoes", c_shoes)
 	
 
 
@@ -63,3 +74,11 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 		velocity.y = 0.1
 	$Meshes.rotation.y = Vector2(velocity.z, velocity.x).angle()
 	move_and_slide()
+
+func bash(point:Vector3):
+	var new_bash :RigidBody3D = BASHED.instantiate()
+	get_parent().add_child(new_bash)
+	new_bash.global_transform = global_transform 
+	new_bash.colour(c_hair, c_hat, c_pants, c_skin, c_shirt, c_shoes)
+	new_bash.apply_delayed(point.direction_to(global_position)*50 + Vector3(0, 30, 0))
+	queue_free()

@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://jn6h2v3w68xl"]
+[gd_scene load_steps=19 format=3 uid="uid://jn6h2v3w68xl"]
 
 [ext_resource type="ArrayMesh" uid="uid://b0t73el0jwhjd" path="res://Models/MC/MC_IDLE.vox" id="1_4ntmi"]
 [ext_resource type="Script" uid="uid://xabqjy4ufdbh" path="res://Player/player.gd" id="1_btcbx"]
 [ext_resource type="ArrayMesh" uid="uid://cte3x7a7oxp1h" path="res://Models/MC/MC_RUN.vox" id="2_btcbx"]
 [ext_resource type="PackedScene" uid="uid://dwmuldaheatd" path="res://Player/map_view.tscn" id="4_gwnis"]
+[ext_resource type="ArrayMesh" uid="uid://5rhdsc44ny8" path="res://Models/Extras/guitar.vox" id="4_k53q1"]
 
 [sub_resource type="Animation" id="Animation_k53q1"]
 length = 0.001
@@ -157,6 +158,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Meshes/McIdle:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.14159, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_gwnis"]
 resource_name = "run"
@@ -233,6 +246,94 @@ albedo_texture = SubResource("ViewportTexture_gwnis")
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_k53q1")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fhl08"]
+size = Vector3(0.377686, 0.945129, 4.31122)
+
+[sub_resource type="Animation" id="Animation_vtle1"]
+resource_name = "Bash"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Meshes/Guitar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.176179, 0.708932, -0.984822), Vector3(-0.59954, -0.0406277, -0.596596), Vector3(0.276, -0.041, 0.221), Vector3(-0.176179, 0.708932, -0.984822)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Meshes/Guitar:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.53093, 0, 0), Vector3(0, 0.796446, 0), Vector3(0, -2.21308, 0), Vector3(1.53093, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Meshes/Guitar/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_od3ui"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Meshes/Guitar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.176179, 0.708932, -0.984822)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Meshes/Guitar:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.53093, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Meshes/Guitar/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_00tjw"]
+_data = {
+&"Bash": SubResource("Animation_vtle1"),
+&"RESET": SubResource("Animation_od3ui")
+}
+
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_btcbx")
@@ -276,4 +377,27 @@ skeleton = NodePath("../..")
 [node name="MapCam" type="Camera3D" parent="Meshes/Map"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.42627, -0.00446868)
 
+[node name="Guitar" type="Area3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 0.0398527, -0.999206, 0, 0.999206, 0.0398527, -0.176179, 0.708932, -0.984822)
+collision_layer = 8
+collision_mask = 8
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Meshes/Guitar"]
+transform = Transform3D(4.37114e-08, 1, 3.82137e-15, 1, -4.37114e-08, 8.74228e-08, 8.74228e-08, 0, -1, -0.805232, 0.955256, -1.0026)
+mesh = ExtResource("4_k53q1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meshes/Guitar"]
+transform = Transform3D(1, -1.11759e-08, -2.98023e-08, -1.49012e-08, 1.00001, -1.86265e-09, -7.15256e-07, -2.23517e-08, 1, -0.666138, 1.01559, -2.10397)
+shape = SubResource("BoxShape3D_fhl08")
+disabled = true
+
 [node name="MapView" parent="." instance=ExtResource("4_gwnis")]
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_00tjw")
+}
+autoplay = "RESET"
+speed_scale = 1.5
+
+[connection signal="body_entered" from="Meshes/Guitar" to="." method="_on_bash_body_entered"]

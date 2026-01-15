@@ -281,7 +281,7 @@ wait_time = 31.0
 one_shot = true
 
 [node name="Start" type="Timer" parent="."]
-wait_time = 1.4
+wait_time = 12.4
 one_shot = true
 autostart = true
 

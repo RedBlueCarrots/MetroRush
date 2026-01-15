@@ -312,6 +312,8 @@ _data = {
 }
 
 [node name="Pedestrian" type="CharacterBody3D" groups=["Pedestrian"]]
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("1_8kvt3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

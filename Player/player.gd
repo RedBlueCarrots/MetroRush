@@ -31,8 +31,11 @@ func toggle_map():
 		unsync_cams()
 
 func _process(delta: float) -> void:
+	$Meshes/Guitar.visible = Global.has_guitar
 	if Input.is_action_just_pressed("map"):
 		toggle_map()
+	if Input.is_action_just_pressed("Bash") and !$AnimationPlayer2.is_playing():
+		$AnimationPlayer2.play("Bash")
 
 func _physics_process(delta: float) -> void:
 	slipping -= delta
@@ -40,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	if stair_state == STAIRSMODE.OFF:
@@ -70,7 +73,7 @@ func _physics_process(delta: float) -> void:
 					velocity.y = amount_up
 					step_wait = true
 					var tw = get_tree().create_tween()
-					tw.tween_property(self, "position:z", position.z - 3 * mult, 0.18)
+					tw.tween_property(self, "position:z", position.z - 3 * mult, 0.1)
 					tw.play()
 			if last_step != -1:
 				if Input.is_action_just_pressed("step_left"):
@@ -78,12 +81,19 @@ func _physics_process(delta: float) -> void:
 					velocity.y = amount_up
 					step_wait = true
 					var tw = get_tree().create_tween()
-					tw.tween_property(self, "position:z", position.z - 3 * mult, 0.18)
+					tw.tween_property(self, "position:z", position.z - 3 * mult, 0.1)
 					tw.play()
 
 	move_and_slide()
 	if abs(velocity.x) + abs(velocity.z) > 1:
 		$Meshes.rotation.y = Vector2(-velocity.x, velocity.z).angle()
+		if slipping <= 0.0:
+			$AnimationPlayer.play("run")
+	elif slipping <= 0.0:
+		$AnimationPlayer.play("idle")
+	for c in range(get_slide_collision_count()):
+		if get_slide_collision(c).get_collider() is NPC:
+			velocity *= Vector3(0,1, 0)
 
 
 func _input(event: InputEvent) -> void:
@@ -130,3 +140,8 @@ func stairs_exit():
 func slip():
 	slipping = 1.0
 	$AnimationPlayer.play("Slip")
+
+
+func _on_bash_body_entered(body: Node3D) -> void:
+	if !$Meshes/Guitar/CollisionShape3D.disabled and Global.has_guitar:
+		body.bash($Meshes/Guitar.global_position)
