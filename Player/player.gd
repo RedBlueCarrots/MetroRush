@@ -59,10 +59,10 @@ func _physics_process(delta: float) -> void:
 	
 	
 	else:
-		var amount_up = JUMP_VELOCITY * 0.9
+		var amount_up = JUMP_VELOCITY * 0.7
 		var mult = 1
 		if stair_state == STAIRSMODE.DOWN:
-			amount_up = JUMP_VELOCITY*0.4
+			amount_up = JUMP_VELOCITY*0.2
 			mult = -1
 		if is_on_floor():
 			step_wait = false

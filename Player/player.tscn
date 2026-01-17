@@ -378,7 +378,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.42627, -0.00446868)
 
 [node name="Guitar" type="Area3D" parent="Meshes"]
-transform = Transform3D(1, 0, 0, 0, 0.0398527, -0.999206, 0, 0.999206, 0.0398527, -0.176179, 0.708932, -0.984822)
+transform = Transform3D(1, 0, 0, 0, 0.0398557, -0.999206, 0, 0.999206, 0.0398557, -0.176179, 0.708932, -0.984822)
 collision_layer = 8
 collision_mask = 8
 

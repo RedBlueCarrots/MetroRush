@@ -296,7 +296,6 @@ stream = ExtResource("4_55g6r")
 stream = ExtResource("5_q6okl")
 
 [node name="UI" parent="." instance=ExtResource("6_q6okl")]
-visible = false
 
 [connection signal="timeout" from="MainGame" to="." method="_on_main_game_timeout"]
 [connection signal="timeout" from="Start" to="." method="_on_start_timeout"]
